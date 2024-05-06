@@ -1,4 +1,5 @@
 public class kKnight {
+    static int number0fk = 3;
     public static void main(String[] args) {
         int n = 3;
         char[][] board = new char[n][n];
@@ -13,13 +14,16 @@ public class kKnight {
     private static void k_knight(char[][] board,int row , int col,int num) {
         int n = board.length;
         if(row==n){
-            for (int i = 0; i < n ; i++) {
-                for (int j = 0; j < n ; j++) {
-                    System.out.print(board[i][j]);
+            if(num == number0fk){
+                for (int i = 0; i < n ; i++) {
+                    for (int j = 0; j < n ; j++) {
+                        System.out.print(board[i][j]);
+                    }
+                    System.out.println();
                 }
                 System.out.println();
+
             }
-            System.out.println();
             return;
         }
         else if(isSafe(board,row,col)){
