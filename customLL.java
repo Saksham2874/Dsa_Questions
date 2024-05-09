@@ -18,10 +18,11 @@ public class customLL {
             }
         }
         int size(){
+            Node temp = head;
             int count = 0;
-            while(head!=null){
+            while(temp!=null){
                count++;
-               head = head.next;
+               temp = temp.next;
             }
             return count;
         }
