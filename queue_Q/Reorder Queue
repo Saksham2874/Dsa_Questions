@@ -1,0 +1,57 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+public class Reorder_queue {
+    public static void main(String[] args) {
+        // we are given for example a queue with even no. of elements and then we have to interleave 1st half and 2nd half
+        // for ex queue is -  1 2 3 4 5 6 7 8
+        // the out queue is - 1 5 2 6 3 7 4 8
+        // we have to use a stack to do so
+        Queue<Integer> q = new LinkedList<>();
+        q.add(1);
+        q.add(2);
+        q.add(3);
+        q.add(4);
+        q.add(5);
+        q.add(6);
+        q.add(7);
+        q.add(8);
+        System.out.println("Original Q: " + q);
+        Queue<Integer> res = reorder(q);
+        System.out.println("Reorder Q: " + res);
+    }
+    public static Queue<Integer> reorder(Queue<Integer> q){
+        // Step1 : move first half to the stack
+        // Step2 : empty stack to queue
+        // Step3 : Move 1st(2nd) half to stack
+        // Step4 : One by one add st.peek and q.peek to q (alternatively)
+        // Step5 : Reverse the queue using stack
+        int n = q.size();
+        Stack<Integer> st = new Stack<>();
+        // q - 1 2 3 4 5 6 7 8
+        // step1
+        for(int i = 1 ; i <= n/2 ; i++){
+            st.push(q.remove());
+        } // q - 5 6 7 8
+        // step2
+        while(st. size() > 0) q.add(st.pop()); // q - 5 6 7 8 4 3 2 1
+        // step3
+        for(int i = 1 ; i <= n/2 ; i++){
+            st.push(q.remove());
+        } // q - 4 3 2 1
+        // step4
+        while(st.size()>0 ){
+            q.add(st.pop());
+            q.add(q.remove());
+        }
+        while(q.size() > 0){
+            st.push(q.remove());
+        }
+        while (st.size() > 0){
+            q.add(st.pop());
+        }
+        return q;
+
+    }
+}
